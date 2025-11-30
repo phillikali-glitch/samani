@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samani Creations Ltd | Premium Furniture & Interior Design</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Brand Colors */
+        :root {
+            --gunmetal: #2C3539;
+            --dark-moss-green: #556B2F;
+            --beige: #F5F5DC;
+            --towny: #CC5500;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--beige);
+            color: var(--gunmetal);
+            overflow-x: hidden;
+        }
+
+        /* Fixed Header with Logo */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.97);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .logo-container img {
+            height: 60px;
+            width: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--gunmetal);
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--towny);
+        }
+
+        /* Rotating Background Slideshow */
+        .slideshow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 10%;
+            margin-top: 90px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--gunmetal);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--gunmetal);
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--towny);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #b34a00;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(204, 85, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: var(--dark-moss-green);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #485a25;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(85, 107, 47, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--gunmetal);
+            border: 2px solid var(--gunmetal);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--gunmetal);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        /* Sections Styling */
+        section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--gunmetal);
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--towny);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-moss-green);
+        }
+
+        .service-content p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Portfolio Sections */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 300px;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(44, 53, 57, 0.9), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .portfolio-overlay h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .portfolio-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info {
+            background-color: var(--gunmetal);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--beige);
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-details p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-details i {
+            margin-right: 10px;
+            color: var(--towny);
+            width: 20px;
+            text-align: center;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--gunmetal);
+            color: white;
+            padding: 60px 10% 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--beige);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--towny);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Audio Player */
+        .audio-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--gunmetal);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+        }
+
+        .audio-player button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            nav ul li {
+                margin-left: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px 5%;
+            }
+            
+            .logo-container {
+                margin-bottom: 15px;
+            }
+            
+            .hero {
+                margin-top: 140px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            section {
+                padding: 80px 5%;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Header with Logo -->
+    <header>
+        <div class="logo-container">
+            <img src="https://i.ibb.co/H1wL4ph/official-samani-logo.png" alt="Samani Creations Ltd Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#milestone-projects">Projects</a></li>
+                <li><a href="#space-treatments">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Rotating Background Slideshow -->
+    <div class="slideshow-container">
+        <div class="slide" style="background-image: url('https://i.ibb.co/6RPTNQbR/UOLz3D5E.jpg');"></div>
+        <div class="slide" style="background-image: url('https://i.ibb.co/TDTcYbBG/VUuk9s0-I-1.jpg');"></div>
+        <div class="slide" style="background-image: url('https://i.ibb.co/SX1CtRBj/o7GOmpSy.jpg');"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Transforming Spaces with Exceptional Craftsmanship</h1>
+            <p>Samani Creations Ltd is Uganda's premier furnishing and interior design firm, specializing in creating bespoke environments for residential, commercial, and hospitality clients. With our expert team and attention to detail, we bring your vision to life.</p>
+            <div class="cta-buttons">
+                <a href="tel:+256785727065" class="btn btn-primary"><i class="fas fa-phone"></i> Call us now</a>
+                <a href="mailto:sales@samanicreations.com" class="btn btn-secondary"><i class="fas fa-calendar-check"></i> Book a meeting</a>
+                <a href="https://wa.me/256785727065" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp now</a>
+                <a href="mailto:info@samanicreations.com" class="btn btn-outline"><i class="fas fa-info-circle"></i> Find out more</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-title">
+            <h2>Our Services</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-content">
+                    <h3>Bulk Commercial Furniture Supplies</h3>
+                    <p>Complete furnishing solutions for offices, hotels, and commercial establishments with bulk pricing advantages.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-content">
+                    <h3>Home Furnishing & Refurbishing</h3>
+                    <p>Transform your living spaces with our comprehensive home furnishing and refurbishment services.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-content">
+                    <h3>Apartment & Airbnb Furnishing</h3>
+                    <p>Specialized furnishing packages designed for rental properties to maximize appeal and functionality.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-content">
+                    <h3>Outdoor Furnishing</h3>
+                    <p>Create inviting outdoor spaces with our durable and stylish outdoor furniture collections.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-content">
+                    <h3>Custom Couches & Modern Kitchens</h3>
+                    <p>Bespoke furniture pieces including custom couches and state-of-the-art modern kitchen designs.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-content">
+                    <h3>Hotel Furniture Supplies</h3>
+                    <p>Complete furnishing solutions for the hospitality industry, balancing aesthetics with durability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Current Milestone Projects -->
+    <section id="milestone-projects" class="portfolio">
+        <div class="section-title">
+            <h2>Our Current Milestone Projects</h2>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/xtctsBbY/samani-generated-10.jpg" alt="Educational Project" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Educational Excellence</h3>
+                    <p>Partnering to turn schools into modern learning comforts</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/chvdT3wR/samani-generated-8.png" alt="Corporate Project" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Corporate Innovation</h3>
+                    <p>Designing workspaces that inspire productivity and collaboration</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/ZR1LgtSK/samani-generated-9.jpg" alt="Hospitality Project" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Hospitality Redefined</h3>
+                    <p>Creating memorable guest experiences through intentional design</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/nqgD6Ryr/samani-generated-6.png" alt="Residential Project" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Residential Transformation</h3>
+                    <p>Turning houses into dream homes with functional aesthetics</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/qLLfcm5p/samani-generated-2.png" alt="Commercial Project" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Commercial Excellence</h3>
+                    <p>Elevating business environments with premium furnishings</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/DHFgv6dT/samani-generated-12.jpg" alt="Institutional Project" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Institutional Upgrade</h3>
+                    <p>Modernizing facilities for enhanced functionality and appeal</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Unique Space Treatments -->
+    <section id="space-treatments" class="portfolio">
+        <div class="section-title">
+            <h2>Our Unique Space Treatments</h2>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/DD0vDzDF/samani-generated-4.jpg" alt="Family Living Space" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Family Harmony</h3>
+                    <p>Designing family time to be a homely time</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/gLf35jgv/samani-generated-1.png" alt="Living Room Design" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Living Elegance</h3>
+                    <p>Creating spaces where memories are made and shared</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/0V6ZfD8s/Whats-App-Image-2025-11-26-at-12-47-22-PM.jpg" alt="Dining Area" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Dining Excellence</h3>
+                    <p>Transforming meals into experiences with beautifully designed dining spaces</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/np3Q0m4/samani-generated-3.jpg" alt="Bedroom Retreat" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Sleep Sanctuary</h3>
+                    <p>Designing bedrooms that become personal retreats for rest and renewal</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/DFTdxvv/Whats-App-Image-2025-11-26-at-12-47-18-PM.jpg" alt="Home Office" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Productive Spaces</h3>
+                    <p>Creating home offices that balance professionalism and comfort</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/nqXsGwK6/samani-generated-5.jpg" alt="Entertainment Area" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Entertainment Hub</h3>
+                    <p>Designing spaces for relaxation and entertainment with style and function</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/0VmYL3hJ/samani-generated-6.jpg" alt="Luxury Interior" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Luxury Living</h3>
+                    <p>Crafting premium environments that reflect sophistication and taste</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/Rkgmt1d8/Whats-App-Image-2025-11-26-at-12-47-17-PM.jpg" alt="Modern Interior" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Modern Aesthetics</h3>
+                    <p>Blending contemporary design with functional living spaces</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Fitness Engagements -->
+    <section id="fitness-engagements" class="portfolio">
+        <div class="section-title">
+            <h2>Our Fitness Engagements</h2>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/MDPv6yGF/samani-generated-5.png" alt="Fitness Facility" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Fitness Innovation</h3>
+                    <p>Working out the lasting way with durable and functional fitness spaces</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/V0HwR6JK/samani-generated-1.jpg" alt="Gym Interior" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Performance Spaces</h3>
+                    <p>Creating environments that motivate and support fitness goals</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/KcHb9wgr/samani-generated-11.jpg" alt="Wellness Center" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Wellness Focus</h3>
+                    <p>Designing spaces that promote holistic health and well-being</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Beauty Escorts -->
+    <section id="beauty-escorts" class="portfolio">
+        <div class="section-title">
+            <h2>The Beauty Escorts</h2>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/pv9rvgYg/Whats-App-Image-2025-11-26-at-12-47-20-PM-1.jpg" alt="Serene Space" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Tranquil Moments</h3>
+                    <p>A sentimental glimpse of calmness in every designed space</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/SXT3rv60/graite-interiors-15.jpg" alt="Elegant Interior" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Refined Elegance</h3>
+                    <p>Where beauty and function unite in perfect harmony</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/pDbS5kT/graite-interiors-30.jpg" alt="Luxury Design" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Luxury Defined</h3>
+                    <p>Curating spaces that exemplify sophistication and comfort</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/dCPGZxz/graite-interiors-17.jpg" alt="Artistic Detail" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Artistic Expression</h3>
+                    <p>Transforming interiors into works of art that inspire daily living</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://i.ibb.co/1t0STR9k/graite-interiors-6.jpg" alt="Beautiful Interior" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3>Aesthetic Harmony</h3>
+                    <p>Creating visual poetry through balanced design elements</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <div class="contact-details">
+                    <p><i class="fas fa-building"></i> Visit our showroom: FAN BUILDING, NAKWERO, KIRA, UGANDA</p>
+                    <p><i class="fas fa-phone"></i> +256785727065</p>
+                    <p><i class="fas fa-envelope"></i> sales@samanicreations.com</p>
+                    <p><i class="fas fa-info-circle"></i> info@samanicreations.com</p>
+                </div>
+                <div class="cta-buttons">
+                    <a href="tel:+256785727065" class="btn btn-primary"><i class="fas fa-phone"></i> Call us now</a>
+                    <a href="https://wa.me/256785727065" class="btn btn-whatsapp" style="margin-top: 15px;"><i class="fab fa-whatsapp"></i> WhatsApp now</a>
+                    <a href="mailto:sales@samanicreations.com" class="btn btn-secondary" style="margin-top: 15px;"><i class="fas fa-calendar-check"></i> Book a meeting</a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="text" placeholder="Subject">
+                    <textarea placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Samani Creations Ltd</h3>
+                <p>Uganda's premier furnishing and interior design firm, transforming spaces with exceptional craftsmanship and attention to detail.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#milestone-projects">Projects</a></li>
+                    <li><a href="#space-treatments">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="#services">Bulk Commercial Supplies</a></li>
+                    <li><a href="#services">Home Furnishing</a></li>
+                    <li><a href="#services">Apartment & Airbnb</a></li>
+                    <li><a href="#services">Custom Furniture</a></li>
+                    <li><a href="#services">Hotel Furnishing</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect With Us</h3>
+                <ul>
+                    <li><a href="tel:+256785727065">Call: +256785727065</a></li>
+                    <li><a href="https://wa.me/256785727065">WhatsApp: +256785727065</a></li>
+                    <li><a href="mailto:sales@samanicreations.com">Email: sales@samanicreations.com</a></li>
+                    <li>Visit: FAN BUILDING, NAKWERO, KIRA, UGANDA</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Samani Creations Ltd. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Audio Element -->
+    <audio id="backgroundAudio" loop>
+        <source src="https://drive.google.com/uc?export=download&id=1GlB5aqUarKWDIvR1vLNG6o8P6XjGRp13" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Audio Player Controls -->
+    <div class="audio-player">
+        <button id="playPauseBtn"><i class="fas fa-play"></i></button>
+        <span>Background Music</span>
+    </div>
+
+    <script>
+        // Rotating Background Slideshow
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.slide');
+            const slideCount = slides.length;
+            
+            // Show first slide
+            if (slides.length > 0) {
+                slides[0].style.opacity = 1;
+            }
+            
+            // Rotate slides every 3 seconds
+            setInterval(() => {
+                slides[currentSlide].style.opacity = 0;
+                currentSlide = (currentSlide + 1) % slideCount;
+                slides[currentSlide].style.opacity = 1;
+            }, 3000);
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Audio functionality
+            const audio = document.getElementById('backgroundAudio');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const playIcon = playPauseBtn.querySelector('i');
+            
+            // Try to autoplay the audio
+            const playAudio = () => {
+                audio.play().then(() => {
+                    playIcon.classList.remove('fa-play');
+                    playIcon.classList.add('fa-pause');
+                }).catch(error => {
+                    console.log('Autoplay prevented:', error);
+                    // Show play button to allow user to start audio
+                    playPauseBtn.style.display = 'flex';
+                });
+            };
+            
+            // Attempt to play audio on page load
+            playAudio();
+            
+            // Play/Pause button functionality
+            playPauseBtn.addEventListener('click', function() {
+                if (audio.paused) {
+                    audio.play();
+                    playIcon.classList.remove('fa-play');
+                    playIcon.classList.add('fa-pause');
+                } else {
+                    audio.pause();
+                    playIcon.classList.remove('fa-pause');
+                    playIcon.classList.add('fa-play');
+                }
+            });
+            
+            // Form submission
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                this.reset();
+            });
+        });
+    </script>
+</body>
+</html>
